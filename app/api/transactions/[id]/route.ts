@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectMongo from "@/lib/mongodb";
 import Transaction from "@/models/transaction";
 
+// DELETE a transaction
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }

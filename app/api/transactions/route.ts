@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectMongo from "@/lib/mongodb";
-import Transaction from "@/models/transaction"; // Correct path to your model
+import Transaction from "@/models/transaction";
 
-// GET all transactions
 export async function GET() {
   try {
     await connectMongo();
@@ -14,7 +13,6 @@ export async function GET() {
   }
 }
 
-// POST a new transaction
 export async function POST(request: NextRequest) {
   try {
     await connectMongo();

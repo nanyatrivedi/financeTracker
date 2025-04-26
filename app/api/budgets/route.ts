@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import connectMongo from "@/lib/mongodb";
 import Budget from "@/lib/budget";
 
-// GET all budgets
 export async function GET() {
   await connectMongo();
 
@@ -10,7 +9,6 @@ export async function GET() {
   return NextResponse.json(budgets);
 }
 
-// POST new or update existing budget
 export async function POST(request: NextRequest) {
   await connectMongo();
 
