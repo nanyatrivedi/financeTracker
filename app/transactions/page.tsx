@@ -28,7 +28,7 @@ export default function TransactionsPage() {
   const [category, setCategory] = useState<string>("Food");
   const [budgetCategory, setBudgetCategory] = useState<string>("Food");
   const [budgetAmount, setBudgetAmount] = useState<number>(0);
-  const [selectedMonth, setSelectedMonth] = useState<string>(new Date().toISOString().slice(0, 7)); // format: YYYY-MM
+  const [selectedMonth, setSelectedMonth] = useState<string>(new Date().toISOString().slice(0, 7)); 
 
   useEffect(() => {
     fetchTransactions();
@@ -135,7 +135,6 @@ export default function TransactionsPage() {
     }
   }
 
-  // Filter transactions by selected month
   const filteredTransactions = transactions.filter((txn) => {
     return txn.date.slice(0, 7) === selectedMonth;
   });
