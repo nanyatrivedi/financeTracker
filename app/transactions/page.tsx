@@ -1,5 +1,11 @@
 "use client";
 
+import TransactionsPage from "@/app/transactions/page";
+
+export default function Home() {
+  return <TransactionsPage />;
+}
+
 import { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
