@@ -1,5 +1,3 @@
-<img width="1467" alt="Screenshot 2025-04-26 at 8 05 31 PM" src="https://github.com/user-attachments/assets/6559afd4-4900-4873-9bb4-f54cee3b3436" /># Personal Finance Visualizer 💰
-
 A simple, elegant web application for tracking personal finances.  
 Built using **Next.js**, **React**, **shadcn/ui**, **Recharts**, and **MongoDB Atlas**.
 
