@@ -28,7 +28,7 @@ export default function TransactionsPage() {
   const [category, setCategory] = useState<string>("Food");
   const [budgetCategory, setBudgetCategory] = useState<string>("Food");
   const [budgetAmount, setBudgetAmount] = useState<number>(0);
-  const [selectedMonth, setSelectedMonth] = useState<string>(new Date().toISOString().slice(0, 7));
+  const [selectedMonth, setSelectedMonth] = useState<string>(new Date().toISOString().slice(0, 7)); 
 
   useEffect(() => {
     fetchTransactions();
@@ -57,7 +57,13 @@ export default function TransactionsPage() {
 
   async function handleSubmitTransaction(e: React.FormEvent) {
     e.preventDefault();
-    const newTransaction = { amount, description, date, category };
+
+    const newTransaction = {
+      amount,
+      description,
+      date,
+      category,
+    };
 
     try {
       const res = await fetch("/api/transactions", {
@@ -84,7 +90,11 @@ export default function TransactionsPage() {
 
   async function handleSubmitBudget(e: React.FormEvent) {
     e.preventDefault();
-    const newBudget = { category: budgetCategory, amount: budgetAmount };
+
+    const newBudget = {
+      category: budgetCategory,
+      amount: budgetAmount,
+    };
 
     try {
       const res = await fetch("/api/budgets", {
@@ -125,7 +135,9 @@ export default function TransactionsPage() {
     }
   }
 
-  const filteredTransactions = transactions.filter((txn) => txn.date.slice(0, 7) === selectedMonth);
+  const filteredTransactions = transactions.filter((txn) => {
+    return txn.date.slice(0, 7) === selectedMonth;
+  });
 
   const totalAmount = filteredTransactions.reduce((sum, txn) => sum + txn.amount, 0);
 
@@ -208,6 +220,7 @@ export default function TransactionsPage() {
       {budgetComparison.length > 0 && (
         <div className="bg-white p-6 rounded-2xl shadow-md">
           <h2 className="text-xl font-bold mb-4 text-center">Budget vs Spending</h2>
+
           <BarChart width={500} height={300} data={budgetComparison}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="category" />
@@ -226,41 +239,6 @@ export default function TransactionsPage() {
           </div>
         </div>
       )}
-
-      {/* Budget Setting Form */}
-      <div className="bg-white p-6 rounded-2xl shadow-md">
-        <h2 className="text-xl font-bold mb-4 text-center">Set Monthly Budget</h2>
-        <form onSubmit={handleSubmitBudget} className="flex flex-col md:flex-row gap-4 items-center justify-center">
-          <select
-            value={budgetCategory}
-            onChange={(e) => setBudgetCategory(e.target.value)}
-            className="border p-3 rounded-lg focus:ring-2 focus:ring-black"
-            required
-          >
-            <option value="Food">Food</option>
-            <option value="Transport">Transport</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Other">Other</option>
-          </select>
-
-          <input
-            type="number"
-            placeholder="Budget Amount (₹)"
-            value={budgetAmount}
-            onChange={(e) => setBudgetAmount(Number(e.target.value))}
-            className="border p-3 rounded-lg focus:ring-2 focus:ring-black"
-            required
-          />
-
-          <button
-            type="submit"
-            className="bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-gray-800"
-          >
-            💾 Save Budget
-          </button>
-        </form>
-      </div>
 
       {/* Add Transaction Form */}
       <form onSubmit={handleSubmitTransaction} className="space-y-6 bg-white p-6 rounded-2xl shadow-md">
