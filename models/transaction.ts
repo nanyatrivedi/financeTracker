@@ -19,5 +19,4 @@ const TransactionSchema = new Schema({
   },
 });
 
-// Avoid "Cannot overwrite model" error
 export default mongoose.models.Transaction || mongoose.model("Transaction", TransactionSchema);
