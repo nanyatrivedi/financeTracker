@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectMongo from "@/lib/mongodb";
-import Transaction from "@/models/transaction"; // No brackets {} now because you exported default
+import Transaction from "@/models/transaction"; 
 
 interface Params {
   id: string;
 }
 
-// DELETE a transaction
 export async function DELETE(req: NextRequest, { params }: { params: Params }) {
   await connectMongo();
 
