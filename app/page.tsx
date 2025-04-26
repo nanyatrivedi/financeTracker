@@ -1,6 +1,6 @@
 "use client";
 
-import TransactionsPage from "@/app/transactions/page";
+import TransactionsPage from "./transactions/page";
 
 export default function Home() {
   return <TransactionsPage />;
