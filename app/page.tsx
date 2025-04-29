@@ -1,7 +1,3 @@
 "use client";
 
-import TransactionsPage from "./transactions/page";
-
-export default function Home() {
-  return <TransactionsPage />;
-}
+export { default } from "./transactions/page";
